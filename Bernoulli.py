@@ -26,6 +26,7 @@ from sys import argv, exc_info, excepthook
 from os import rename, remove
 glob= globals()
 public_functions= []
+public_functions.append("exit  aka  quit")
 help= help
 
 CACHE_FNAME= "Bernoulli.pycache"
@@ -167,7 +168,10 @@ def cli_exec(toks):
 from re import compile
 cmd_parser= compile(r"\b\w+\b").findall
 def exec_command(cmd):
-    "This function can be used to emulate command line mode."
+    """Function `exec_command` can be used to emulate command line mode.
+  Usage: 'exec_command(your_command)'
+  Eg. use: 'exec_command("nth_Bernoulli_num 8")'
+  Ommit interpreter name & file name you're inside them!"""
     L= cmd_parser(cmd);
     cli_exec(L)
 ec= exec_command
@@ -177,18 +181,19 @@ public_functions.append("exec_command aka ec")
 def save_key_nums():
     """
     Saves numbers that are most vital for calculations.
-    These are generally numbers needed to quickly construct sequence of Bernoulli numbers.
+    These are generally numbers needed to quickly reconstruct sequence of Bernoulli numbers.
     This optimization makes futher calculations faster.
     Overhead for reading/writing these numbers from/to cache file hasn't been measured.
     """
     # cache_not_saved= True
     try:
-        #print("\nDEBUG: Saving cache.")
+        print("Saving the key numbers to cache.")
         with open(ACTIVE_CFNAME, "wb") as fi:
             fi.write(dumps( (bernoulli_nums, generator_nums,) ))
         try: remove(CACHE_FNAME)
         except FileNotFoundError: pass
         rename(ACTIVE_CFNAME, CACHE_FNAME)
+        print("Success. 2*%d numbers saved.\n"%len(bernoulli_nums))
     except(KeyboardInterrupt): save_key_nums()
 save= save_key_nums
 public_functions.append("save_key_nums  aka  save")
@@ -204,31 +209,26 @@ if __name__=="__main__":
     if len(argv)<=1:
         print("Welcome to Bernoulli-Interactive!")
         print()
-        print("In this mode you can use either Python3, Python3 math and Bernoulli.py functions.")
         from math import *
-        print("If you intended to use CLI mode, then learn how to use CLI from someone :) .")
+        print("If you intended to use CLI mode, then you need to know hot to use OS terminal.")
         print('CLI has help command, you can run "python Bernoulli.py help" from terminal.')
-        print('You can still you CLI commands via function:'
-              'exec_command(your_command)" (Ommit interpreter name & file name you\'re inside them!).')
         print()
+        print("In this interactive mode you can use either Python3, Python3 math and Bernoulli.py functions.")
         print("Public Bernoulli.py functions:")
         
         for i,func_name in enumerate(public_functions,1): print(f" {i}. {func_name}")
         print('Type: "help(function_name)" for help.')
         print()
+        print(exec_command.__doc__)
         
         # Using interpreter
         while True:
             try:
                 v= eval(input(">> "))
                 if v is not None: print(v)
-            except(KeyboardInterrupt,EOFError):
+            except(KeyboardInterrupt,EOFError,SystemExit):
                 break
             except:
                 excepthook(*exc_info())
     else:
         cli_exec(argv[1:])
-
-
-
-    
