@@ -100,15 +100,18 @@ def sum_of_pows(n:int,p:int)->int:
     n_to_faP= n**p
     tri_nomial= fr(n_to_faP*n,p+1)    +fr(n_to_faP,2)
     
+    n_to_faP//= n;  n_sq= n*n
     # Optimization
     fact_k= 1;
     fa_fact_p= 1; fa_p= p; #p is not used anymore
     for k in range(2,p+1):  #Can be well optimized
         fact_k*=k;
         fa_fact_p*= fa_p;
-        fa_p-=1;      n_to_faP//= n
-        tri_nomial+=   fr(B[k],fact_k)  *  fa_fact_p  *  n_to_faP  # Should this be made one fraction
+        fa_p-=1;
         
+        if k&1==0: #to opt.
+            tri_nomial+=   fr(B[k],fact_k)  *  fa_fact_p  *  n_to_faP  # Should this be made one fraction
+            n_to_faP//= n_sq
     return tri_nomial
 
 def explain_commands(*commands):
