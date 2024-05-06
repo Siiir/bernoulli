@@ -216,8 +216,8 @@ def exec_command(cmd):
     Ommit interpreter name & file name you're inside them!"""
     L = cmd_parser(cmd)
     cli_exec(L)
-# From some reason I decided to define this alias here, not in alias dict.
-# Don't touch. It works.
+
+
 ec = exec_command
 public_functions.append("exec_command aka ec")
 
