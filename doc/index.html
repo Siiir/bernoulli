@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module bernoulli</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">bernoulli</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/tomek/Desktop/py/bernoulli/bernoulli.py">/home/tomek/Desktop/py/bernoulli/bernoulli.py</a></td></tr></table>
+    <p><span class="code">Summary:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Intended&nbsp;for&nbsp;calculating&nbsp;partial&nbsp;sums&nbsp;of&nbsp;powers&nbsp;of&nbsp;natural&nbsp;numbers.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Can&nbsp;also&nbsp;print&nbsp;n+1&nbsp;Bernoulli&nbsp;numbers,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do&nbsp;python&nbsp;math,&nbsp;cache&nbsp;crucial&nbsp;numbers.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Warning:&nbsp;Not&nbsp;fitting&nbsp;for&nbsp;server.&nbsp;Has&nbsp;many&nbsp;vunerabilities.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Can&nbsp;launch&nbsp;arbitrary&nbsp;code.<br>
+&nbsp;<br>
+Help,&nbsp;usage:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;You&nbsp;can&nbsp;take&nbsp;advantage&nbsp;of&nbsp;command&nbsp;line&nbsp;interface<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;see&nbsp;some&nbsp;available&nbsp;commands.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;"python&nbsp;Bernoulli.py&nbsp;help"&nbsp;terminal&nbsp;command&nbsp;for&nbsp;that&nbsp;purpose.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;enter&nbsp;interactive&nbsp;mode&nbsp;by&nbsp;launching&nbsp;Bernoulli.py<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;without&nbsp;any&nbsp;parameters.<br>
+&nbsp;<br>
+Caching:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;App&nbsp;saves&nbsp;calculated&nbsp;values&nbsp;that&nbsp;are&nbsp;most&nbsp;vital&nbsp;for&nbsp;calculations.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;These&nbsp;are&nbsp;generally&nbsp;needed&nbsp;to&nbsp;quickly&nbsp;construct<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;sequence&nbsp;of&nbsp;Bernoulli&nbsp;numbers.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;optimization&nbsp;makes&nbsp;futher&nbsp;uses&nbsp;of&nbsp;bernoulli&nbsp;app&nbsp;faster.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Overhead&nbsp;for&nbsp;reading/writing&nbsp;these&nbsp;numbers&nbsp;from/to&nbsp;cache&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dependes&nbsp;on&nbsp;quantity&nbsp;stored&nbsp;numbers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(it's&nbsp;~0.5s&nbsp;for&nbsp;3001&nbsp;Bernoulli&nbsp;&amp;&nbsp;3001&nbsp;generator&nbsp;numbers).</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="atexit.html">atexit</a><br>
+<a href="fractions.html">fractions</a><br>
+</td><td class="multicolumn"><a href="os.html">os</a><br>
+<a href="pickle.html">pickle</a><br>
+</td><td class="multicolumn"><a href="re.html">re</a><br>
+<a href="sys.html">sys</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-ensure_nth_bn"><strong>ensure_nth_bn</strong></a>(n: int)</dt><dd><span class="code">Ensures&nbsp;that&nbsp;nth&nbsp;Bernoulli&nbsp;number&nbsp;is&nbsp;directly&nbsp;accessible&nbsp;in&nbsp;RAM.<br>
+Concreatly&nbsp;in&nbsp;`bernoulli_nums`&nbsp;collection.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;u&nbsp;Akiyama–Tanigawa&nbsp;algorithm</span></dd></dl>
+ <dl><dt><a name="-exec_command"><strong>exec_command</strong></a>(cmd: str)</dt><dd><span class="code">Function&nbsp;`exec_command`&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;emulate&nbsp;command&nbsp;line&nbsp;mode.<br>
+Usage:&nbsp;'<a href="#-exec_command">exec_command</a>(your_command)'<br>
+Eg.&nbsp;use:&nbsp;'<a href="#-exec_command">exec_command</a>("nth_Bernoulli_num&nbsp;8")'<br>
+Ommit&nbsp;interpreter&nbsp;name&nbsp;&amp;&nbsp;file&nbsp;name&nbsp;you're&nbsp;inside&nbsp;them!</span></dd></dl>
+ <dl><dt><a name="-explain_commands"><strong>explain_commands</strong></a>(*commands: str)</dt><dd><span class="code">It&nbsp;explains&nbsp;commands&nbsp;from&nbsp;CLI.</span></dd></dl>
+ <dl><dt><a name="-fa_fact"><strong>fa_fact</strong></a>(n: int, fall_num: int)</dt><dd><span class="code">Returns&nbsp;falling&nbsp;factorial,<br>
+where&nbsp;`n`&nbsp;is&nbsp;base&nbsp;and&nbsp;`fall_num`&nbsp;is&nbsp;amount&nbsp;of&nbsp;decreasing&nbsp;factors,<br>
+which&nbsp;make&nbsp;up&nbsp;falling&nbsp;factorial</span></dd></dl>
+ <dl><dt><a name="-get_cli_func"><strong>get_cli_func</strong></a>(func_name: str)</dt><dd><span class="code">Gets&nbsp;CLI&nbsp;function&nbsp;by&nbsp;its&nbsp;name&nbsp;or&nbsp;name&nbsp;shorthand.</span></dd></dl>
+ <dl><dt><a name="-nth_Bernoulli_num"><strong>nth_Bernoulli_num</strong></a>(n: int) -&gt; int</dt><dd><span class="code">Returns&nbsp;`n`th&nbsp;Bernoulli&nbsp;number.</span></dd></dl>
+ <dl><dt><a name="-print_up_to_n_Bernoulli_num"><strong>print_up_to_n_Bernoulli_num</strong></a>(n: int)</dt><dd><span class="code">Prints&nbsp;list&nbsp;of&nbsp;all&nbsp;Bernoulli&nbsp;numbers&nbsp;up&nbsp;to&nbsp;`n`th&nbsp;term<br>
+without&nbsp;creating&nbsp;new&nbsp;sequence&nbsp;inside&nbsp;Python&nbsp;kernel.<br>
+It&nbsp;naturally&nbsp;has&nbsp;smaller&nbsp;overhead&nbsp;than&nbsp;printing<br>
+result&nbsp;of&nbsp;`<a href="#-up_to_n_Bernoulli_num">up_to_n_Bernoulli_num</a>(n)`&nbsp;.</span></dd></dl>
+ <dl><dt><a name="-save_key_nums"><strong>save_key_nums</strong></a>()</dt><dd><span class="code">Saves&nbsp;numbers&nbsp;that&nbsp;are&nbsp;most&nbsp;vital&nbsp;for&nbsp;calculations.<br>
+These&nbsp;are&nbsp;generally&nbsp;numbers&nbsp;that&nbsp;are&nbsp;needed<br>
+&nbsp;to&nbsp;quickly&nbsp;reconstruct&nbsp;sequence&nbsp;of&nbsp;Bernoulli&nbsp;numbers.<br>
+This&nbsp;optimization&nbsp;makes&nbsp;futher&nbsp;calculations&nbsp;faster.<br>
+Overhead&nbsp;for&nbsp;reading/writing&nbsp;these&nbsp;numbers&nbsp;from/to&nbsp;cache&nbsp;file<br>
+hasn't&nbsp;been&nbsp;measured.</span></dd></dl>
+ <dl><dt><a name="-sum_of_pows"><strong>sum_of_pows</strong></a>(n: int, p: int) -&gt; int</dt><dd><span class="code">Returns&nbsp;sum&nbsp;of&nbsp;`p`&nbsp;powers&nbsp;of&nbsp;all&nbsp;natural&nbsp;numbers&nbsp;from&nbsp;range&nbsp;[0,`n`].<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;uses&nbsp;optimized&nbsp;Faulhaber's&nbsp;formula.</span></dd></dl>
+ <dl><dt><a name="-up_to_n_Bernoulli_num"><strong>up_to_n_Bernoulli_num</strong></a>(n: int) -&gt; list[fractions.Fraction]</dt><dd><span class="code">Returns&nbsp;list&nbsp;of&nbsp;all&nbsp;Bernoulli&nbsp;numbers&nbsp;up&nbsp;to&nbsp;`n`th&nbsp;term.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>ACTIVE_CFNAME</strong> = 'ActiveBernoulli.pycache'<br>
+<strong>CACHE_FNAME</strong> = 'Bernoulli.pycache'<br>
+<strong>CLI</strong> = {'help': &lt;function explain_commands&gt;, 'nth_Bernoulli_num': &lt;function &lt;lambda&gt;&gt;, 'sum_of_pows': &lt;function &lt;lambda&gt;&gt;, 'up_to_n_Bernoulli_num': &lt;function &lt;lambda&gt;&gt;}<br>
+<strong>CLI_shorthands</strong> = {'h': 'help', 'nth': 'nth_Bernoulli_num', 'psum': 'sum_of_pows', 'up_to': 'up_to_n_Bernoulli_num'}<br>
+<strong>MAX_NO_NUMS_SAVED_TO_CACHE_FILE</strong> = 3000<br>
+<strong>bernoulli_nums</strong> = [Fraction(1, 1), Fraction(1, 2), Fraction(1, 6), Fraction(0, 1), Fraction(-1, 30), Fraction(0, 1), Fraction(1, 42), Fraction(0, 1), Fraction(-1, 30), Fraction(0, 1), Fraction(5, 66), Fraction(0, 1), Fraction(-691, 2730), Fraction(0, 1), Fraction(7, 6), Fraction(0, 1), Fraction(-3617, 510), Fraction(0, 1), Fraction(43867, 798), Fraction(0, 1), ...]<br>
+<strong>bernoulli_nums_read_from_cache</strong> = 3001<br>
+<strong>fi</strong> = &lt;_io.BufferedReader name='Bernoulli.pycache'&gt;<br>
+<strong>generator_nums</strong> = [Fraction(-28919392162925009628147618267854828678...43417141322454179981, 12072109463901626300591430), Fraction(289193921629250096281476182678548286786...43417141322454179981, 12072109463901626300591430), Fraction(-28909498656239440817132902266130953561...42948191954615203, 24136170854827318183649132380), Fraction(240902974703323072350074180714794148154...047997999635144924, 6034042713706829545912283095), Fraction(-15706785477727606373313358586735811532...5176978896050, 157383522484529752314211715053647), Fraction(125626711935336963187417254920581429377...7005833254955, 629534089938119009256846860214588), Fraction(-61860632867156655391591165272550541148...63464751458391, 18606918914427162835177739710776), Fraction(320142944028610659753320487209140615727...21263200795892, 67450081064798465277519306451563), Fraction(-21177330654661567986589889557655011964...3375391, 357295295359363650741508916992764327410), Fraction(469937051619038511607177992674275654902...75458095, 71459059071872730148301783398552865482), Fraction(-94348138629144884118571424764082017089...1, 143751317779967301444181829536663148547726396), Fraction(712852865880697737750146541043868326549...63, 11979276481663941787015152461388595712310533), Fraction(-11170448402525564512134399000657189200...774958239416726467448947512630223325145058085660), Fraction(244402324284826588666321863415543426801...221416639833350419271127860751492378612873738760), Fraction(-23144710245345478159447687749486972122...896188885311113389236150381433532317148383165168), Fraction(209691180216455519695246566095186015550...570113397197049881463370643770210126346462203237), Fraction(-46898559563627223444503090233042627402...643016614905537175226201298616681820692080528030), Fraction(303330602887989453096020316266518533259...404779623878393019469577922068520202299120058670), Fraction(-68771984184923501551629267139661434359...510370711039766117075646973125280286847164361460), Fraction(205025750937149931018303466360660355305...434631588478655173184970095470361649371195078395), ...]<br>
+<strong>glob</strong> = {'ACTIVE_CFNAME': 'ActiveBernoulli.pycache', 'CACHE_FNAME': 'Bernoulli.pycache', 'CLI': {'help': &lt;function explain_commands&gt;, 'nth_Bernoulli_num': &lt;function &lt;lambda&gt;&gt;, 'sum_of_pows': &lt;function &lt;lambda&gt;&gt;, 'up_to_n_Bernoulli_num': &lt;function &lt;lambda&gt;&gt;}, 'CLI_shorthands': {'h': 'help', 'nth': 'nth_Bernoulli_num', 'psum': 'sum_of_pows', 'up_to': 'up_to_n_Bernoulli_num'}, 'MAX_NO_NUMS_SAVED_TO_CACHE_FILE': 3000, '__builtins__': {'ArithmeticError': &lt;class 'ArithmeticError'&gt;, 'AssertionError': &lt;class 'AssertionError'&gt;, 'AttributeError': &lt;class 'AttributeError'&gt;, 'BaseException': &lt;class 'BaseException'&gt;, 'BaseExceptionGroup': &lt;class 'BaseExceptionGroup'&gt;, 'BlockingIOError': &lt;class 'BlockingIOError'&gt;, 'BrokenPipeError': &lt;class 'BrokenPipeError'&gt;, 'BufferError': &lt;class 'BufferError'&gt;, 'BytesWarning': &lt;class 'BytesWarning'&gt;, 'ChildProcessError': &lt;class 'ChildProcessError'&gt;, ...}, '__cached__': '/home/tomek/Desktop/py/bernoulli/__pycache__/bernoulli.cpython-312.pyc', '__doc__': '<span class="repr">\n</span>Summary:<span class="repr">\n</span>    Intended for calculating partial s...5s for 3001 Bernoulli &amp; 3001 generator numbers).<span class="repr">\n</span>', '__file__': '/home/tomek/Desktop/py/bernoulli/bernoulli.py', '__loader__': &lt;_frozen_importlib_external.SourceFileLoader object&gt;, ...}<br>
+<strong>help</strong> = Type help() for interactive help, or help(object) for help about object.<br>
+<strong>public_functions</strong> = ['exit  aka  quit', 'print_up_to_n_Bernoulli_num  aka  print_up', 'exec_command aka ec', 'save_key_nums  aka  save']</td></tr></table>
+</body></html>
