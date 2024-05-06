@@ -27,14 +27,16 @@ Caching:
 """
 
 # %% Definitions
-from fractions import Fraction
-from pickle import loads, dumps
-from sys import argv, exc_info, excepthook
-from os import rename, remove
-from re import compile
+# Expressions / Expressivness
+import fractions
+import re
+# System
+import os
 import sys
+# Miscellaneous
 import atexit
-fr = Fraction
+import pickle
+fr = fractions.Fraction
 
 sys.set_int_max_str_digits(1 << 30)
 
@@ -50,7 +52,7 @@ MAX_NO_NUMS_SAVED_TO_CACHE_FILE = 3_000
 try:
     with open(CACHE_FNAME, "rb") as fi:
         # Pickle Errors not handled !
-        bernoulli_nums, generator_nums = loads(fi.read())
+        bernoulli_nums, generator_nums = pickle.loads(fi.read())
 except FileNotFoundError:
     bernoulli_nums = []
     generator_nums = []
@@ -72,16 +74,13 @@ def ensure_nth_bn(n: int):
         B.append(G[0])
 
 
-ensure = ensure_nth_bn
-
-
 def nth_Bernoulli_num(n: int) -> int:
     """Returns `n`th Bernoulli number."""
     ensure_nth_bn(n)
     return bernoulli_nums[n]
 
 
-def up_to_n_Bernoulli_num(n: int) -> list[Fraction]:
+def up_to_n_Bernoulli_num(n: int) -> list[fractions.Fraction]:
     """Returns list of all Bernoulli numbers up to `n`th term."""
     ensure_nth_bn(n)
     return bernoulli_nums[: n + 1]
@@ -98,7 +97,6 @@ def print_up_to_n_Bernoulli_num(n: int):
         print(f"{k:7}: {bernoulli_nums[k]}")
 
 
-print_up = print_up_to_n_Bernoulli_num
 public_functions.append("print_up_to_n_Bernoulli_num  aka  print_up")
 
 
@@ -189,12 +187,7 @@ def get_cli_func(func_name: str):
     return CLI[func_name]
 
 
-for shorthand, full in CLI_shorthands.items():
-    glob[shorthand] = glob[full]
-    public_functions.append(f"{full}  aka  {shorthand}")
-
-
-def cli_exec(toks: list[str]):
+def _cli_exec(toks: list[str]):
     f = get_cli_func(toks[0])
     # Correct the type of numbers.
     for i in range(1, len(toks)):
@@ -206,19 +199,15 @@ def cli_exec(toks: list[str]):
     f(*toks[1:])
 
 
-parse_cmd = compile(r"\b\w+\b").findall
-
-
 def exec_command(cmd: str):
     """Function `exec_command` can be used to emulate command line mode.
     Usage: 'exec_command(your_command)'
     Eg. use: 'exec_command("nth_Bernoulli_num 8")'
     Ommit interpreter name & file name you're inside them!"""
     L = parse_cmd(cmd)
-    cli_exec(L)
+    _cli_exec(L)
 
 
-ec = exec_command
 public_functions.append("exec_command aka ec")
 
 
@@ -238,7 +227,7 @@ def save_key_nums():
     print("Saving the key numbers to cache.")
     with open(ACTIVE_CFNAME, "wb") as fi:
         fi.write(
-            dumps(
+            pickle.dumps(
                 (
                     bernoulli_nums[:no_nums_to_save],
                     generator_nums[:no_nums_to_save],
@@ -246,14 +235,13 @@ def save_key_nums():
             )
         )
     try:
-        remove(CACHE_FNAME)
+        os.remove(CACHE_FNAME)
     except FileNotFoundError:
         pass
-    rename(ACTIVE_CFNAME, CACHE_FNAME)
+    os.rename(ACTIVE_CFNAME, CACHE_FNAME)
     print("Success. 2*%d numbers saved.\n" % no_nums_to_save)
 
 
-save = save_key_nums
 public_functions.append("save_key_nums  aka  save")
 
 
@@ -263,10 +251,20 @@ atexit.register(save_key_nums)
 
 # %% Interaction with user.
 if __name__ == "__main__":
-    if len(argv) <= 1:
+    # Fuction aliases for user use.
+    from math import *
+    ensure = ensure_nth_bn
+    print_up = print_up_to_n_Bernoulli_num
+    parse_cmd = re.compile(r"\b\w+\b").findall
+    ec = exec_command
+    save = save_key_nums
+    for shorthand, full in CLI_shorthands.items():
+        glob[shorthand] = glob[full]
+        public_functions.append(f"{full}  aka  {shorthand}")
+
+    if len(sys.argv) <= 1:
         print("Welcome to Bernoulli-Interactive!")
         print()
-        from math import *
 
         print(
             "If you intended to use CLI mode,"
@@ -298,6 +296,6 @@ if __name__ == "__main__":
             except (KeyboardInterrupt, EOFError, SystemExit):
                 break
             except:
-                excepthook(*exc_info())
+                sys.excepthook(*sys.exc_info())
     else:
-        cli_exec(argv[1:])
+        _cli_exec(sys.argv[1:])
