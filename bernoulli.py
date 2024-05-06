@@ -27,13 +27,14 @@ Caching:
 """
 
 # %% Definitions
-from fractions import Fraction as fr
+from fractions import Fraction
 from pickle import loads, dumps
 from sys import argv, exc_info, excepthook
 from os import rename, remove
 from re import compile
 import sys
 import atexit
+fr = Fraction
 
 sys.set_int_max_str_digits(1 << 30)
 
@@ -56,7 +57,7 @@ except FileNotFoundError:
 bernoulli_nums_read_from_cache = len(bernoulli_nums)
 
 
-def ensure_nth_bn(n):
+def ensure_nth_bn(n: int):
     """
     Ensures that nth Bernoulli number is directly accessible in RAM.
     Concreatly in `bernoulli_nums` collection.
@@ -80,13 +81,13 @@ def nth_Bernoulli_num(n: int) -> int:
     return bernoulli_nums[n]
 
 
-def up_to_n_Bernoulli_num(n: int) -> list:
+def up_to_n_Bernoulli_num(n: int) -> list[Fraction]:
     """Returns list of all Bernoulli numbers up to `n`th term."""
     ensure_nth_bn(n)
     return bernoulli_nums[: n + 1]
 
 
-def print_up_to_n_Bernoulli_num(n):
+def print_up_to_n_Bernoulli_num(n: int):
     """Prints list of all Bernoulli numbers up to `n`th term
     without creating new sequence inside Python kernel.
     It naturally has smaller overhead than printing
@@ -143,12 +144,11 @@ def sum_of_pows(n: int, p: int) -> int:
     return tri_nomial
 
 
-def explain_commands(*commands):
+def explain_commands(*commands: str):
     """It explains commands from CLI."""
     if commands:
         for com in commands:
-            help(glob[com])  # Will it print to stdout?
-            print("\n")
+            help(glob[com])
     else:
         print(
             'Commands are wrappings around functions.'
@@ -179,7 +179,7 @@ CLI_shorthands = {
 }
 
 
-def get_cli_func(func_name):
+def get_cli_func(func_name: str):
     """Gets CLI function by its name or name shorthand."""
     try:
         func_name = CLI_shorthands[func_name]
@@ -194,7 +194,7 @@ for shorthand, full in CLI_shorthands.items():
     public_functions.append(f"{full}  aka  {shorthand}")
 
 
-def cli_exec(toks):
+def cli_exec(toks: list[str]):
     f = get_cli_func(toks[0])
     # Correct the type of numbers.
     for i in range(1, len(toks)):
@@ -206,15 +206,15 @@ def cli_exec(toks):
     f(*toks[1:])
 
 
-cmd_parser = compile(r"\b\w+\b").findall
+parse_cmd = compile(r"\b\w+\b").findall
 
 
-def exec_command(cmd):
+def exec_command(cmd: str):
     """Function `exec_command` can be used to emulate command line mode.
     Usage: 'exec_command(your_command)'
     Eg. use: 'exec_command("nth_Bernoulli_num 8")'
     Ommit interpreter name & file name you're inside them!"""
-    L = cmd_parser(cmd)
+    L = parse_cmd(cmd)
     cli_exec(L)
 
 
