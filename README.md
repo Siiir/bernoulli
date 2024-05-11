@@ -28,7 +28,7 @@ python bernoulli.py nth 5
 ```
 **Or** in interactive mode type `nth(5)`.
 
-### Printing Bernoulli Numbers up to n
+### Printing Bernoulli Numbers up to `k`
 Lists the first 11 Bernoulli numbers (0 to 10).
 ```bash
 python bernoulli.py up_to 10
@@ -36,14 +36,18 @@ python bernoulli.py up_to 10
 **Or** in interactive mode type `up_to(10)`.
 
 ### Sum of Powerful Powers
-Calculates the sum of the the first 1 milion positive natural numbers each taken to the power of 1800.
+* Calculates the sum of the the first (1 vigintillion + ...) of positive natural numbers each taken to the power of `k`=1873.
 ```bash
-python bernoulli.py psum 1_000_000 1800
-```
-**Or** in interactive mode type `psum(10, 3)`.
+python bernoulli.py psum 1509096632309561804061385286158050392946131124427766465467743034  1873
+```  
+* **Or** in interactive mode type `psum(1509096632309561804061385286158050392946131124427766465467743034, 1873)`.  
+* I have choosen a "small" `n` for the purpose of redability. You can try increasing the first argument quite freely. Whereas increasing the `k` will have a noticable computional cost.
+
 ### Complex equations using Python3's `math` functions and builtins
 #### Interactive mode only.
+```python
 sin(psum(20, 3) - psum(10, 3)) + 2**6
+```
 
 ## Documentation 📚
 ### [Online documentation](https://siiir.github.io/bernoulli/)
@@ -60,6 +64,13 @@ You can even **use short aliases**.
 ```python
 help(nth)
 ```
+
+# Thinking in *big terms*
+* As of time of writing the **most optimized is the _interactive mode_** as it doesn't need to perform the startup (big cache deserialization) between calls to different app commands. It is also capable of performing session-local, in-RAM caching.  
+* Currently caching is set to 3000\*g, but only 2000\*g+2 numbers are saved on GitHub. This means that performing operations like `nth k` or `psum n k` with  
+  1. `k` ≤ 2000 from GitHub clone should be almost const time.
+  2. `k` ≤ 3000 will trigger full caching increasing the app startup time and enhancing large `k` computations.
+  3. `k` > 3000 will trigger only in-RAM caching enchancing computations during one interactive session..
 
 ## Contributing
 Interested in contributing? We're always looking for help to improve documentation, fix issues, or make optimizations. Please read `CONTRIBUTING.md` for more information on how you can contribute to the Bernoulli project.
