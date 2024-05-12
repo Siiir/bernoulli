@@ -10,9 +10,9 @@ Summary:
 Help, usage:
     You can take advantage of command line interface
      to see some available commands.
-    Use "python Bernoulli.py help" terminal command for that purpose.
+    Use "python bernoulli.py help" terminal command for that purpose.
 
-    You can also enter interactive mode by launching Bernoulli.py
+    You can also enter interactive mode by launching bernoulli.py
      without any parameters.
 
 Caching:
@@ -45,7 +45,7 @@ public_functions = []
 public_functions.append("exit  aka  quit")
 help = help
 
-CACHE_FNAME = "Bernoulli.pycache"
+CACHE_FNAME = "bernoulli.pycache"
 ACTIVE_CFNAME = "Active" + CACHE_FNAME
 MAX_NO_NUMS_SAVED_TO_CACHE_FILE = 3_000
 
@@ -150,11 +150,10 @@ def explain_commands(*commands: str):
     else:
         print(
             'Commands are wrappings around functions.'
-            'They\'re implemented in "Bernoulli.py".\n'
+            'They\'re implemented in "bernoulli.py".\n'
             'Use "help choosen_command" to print the documentation'
             ' of the underlying function.\n'
-            "Command line syntax must be preserved!\n"
-            'Sample command: "python Bernoulli.py psum 100 1"\n'
+            'Sample command: "python bernoulli.py psum 100 1"\n'
         )
         print("List of available commands:")
         i = 1
@@ -272,14 +271,14 @@ if __name__ == "__main__":
         )
         print(
             'CLI has help command, you can run'
-            ' "python Bernoulli.py help" from terminal.'
+            ' "python bernoulli.py help" from terminal.'
         )
         print()
         print(
             "In this interactive mode you can use either"
-            " Python3, Python3 math and Bernoulli.py functions."
+            " Python3, Python3 math and bernoulli.py functions."
         )
-        print("Public Bernoulli.py functions:")
+        print("Public bernoulli.py functions:")
 
         for i, func_name in enumerate(public_functions, 1):
             print(f" {i}. {func_name}")
