@@ -4,7 +4,7 @@
 This Python package offers robust tools for calculating partial sums of powers of natural numbers and managing Bernoulli numbers with optimized caching techniques. Ideal for mathematicians, researchers, and software developers interested in number theory or computational mathematics. 
 
 ## Features 🌟
-- **Compute Partial Sums:** Utilize Faulhaber's formula to compute sums of powers of **very long** natural numbers.
+- **Compute LARGE Partial Sums:** Utilize Faulhaber's formula to compute sums of powers of **very long** natural numbers.
 - **Bernoulli Numbers Generation:** Efficiently generate Bernoulli numbers using the Akiyama–Tanigawa algorithm.
 - **Caching System:** Persistent caching of computations to enhance performance of successive operations.
 - **Command Line Interface:** Versatile CLI support for **interactive** and **script-based** usage.
@@ -12,11 +12,11 @@ This Python package offers robust tools for calculating partial sums of powers o
 
 ## Getting Started 🚀
 To get started with `bernoulli`.
-1. Clone the repository
+1. Clone the repository.
 ```bash
 git clone https://github.com/Siiir/bernoulli
 ```
-2. Go to the repo folder
+2. Go to the repo folder.
 ```bash
 cd bernoulli
 ```
@@ -26,7 +26,7 @@ python bernoulli.py help
 ```
 
 ## Examples
-Here are some quick examples to show you the power of the Bernoulli package:
+Here are some quick examples to show you the power of the Bernoulli package.
 
 ### Calculating the nth Bernoulli Number
 This command prints the 5th Bernoulli number.
@@ -50,7 +50,7 @@ python bernoulli.py psum 1509096632309561804061385286158050392946131124427766465
 * **Or**, in interactive mode type
 ```python
 psum(1509096632309561804061385286158050392946131124427766465467743034, 1873)
-```.  
+```  
 * I have choosen a **"small"** `n` for the purpose of readability. You can try increasing the first argument quite freely. Whereas increasing the `k` will have a noticable computional cost.
 
 ### Complex equations using Python3's `math` functions and builtins
