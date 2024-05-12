@@ -29,7 +29,7 @@ python bernoulli.py help
 Here are some quick examples to show you the power of the Bernoulli package.
 
 ### Calculating the nth Bernoulli Number
-This command prints the 5th Bernoulli number.
+This command prints the 6th Bernoulli number.
 ```bash
 python bernoulli.py nth 6
 ```
