@@ -4,10 +4,11 @@
 This Python package offers robust tools for calculating partial sums of powers of natural numbers and managing Bernoulli numbers with optimized caching techniques. Ideal for mathematicians, researchers, and software developers interested in number theory or computational mathematics. 
 
 ## Features 🌟
-- **Compute Partial Sums:** Utilize Faulhaber's formula to compute sums of powers of natural numbers.
+- **Compute Partial Sums:** Utilize Faulhaber's formula to compute sums of powers of **very long** natural numbers.
 - **Bernoulli Numbers Generation:** Efficiently generate Bernoulli numbers using the Akiyama–Tanigawa algorithm.
 - **Caching System:** Persistent caching of computations to enhance performance of successive operations.
-- **Command Line Interface:** Versatile CLI support for interactive and script-based usage.
+- **Command Line Interface:** Versatile CLI support for **interactive** and **script-based** usage.
+- **Library for your app:** You can `import bernoulli` to make it a part of your app. 
 
 ## Getting Started 🚀
 To get started with `bernoulli`.
@@ -15,7 +16,11 @@ To get started with `bernoulli`.
 ```bash
 git clone https://github.com/Siiir/bernoulli
 ```
-2. Run the following command in your terminal:
+2. Go to the repo folder
+```bash
+cd bernoulli
+```
+3. Run the following command in your terminal:
 ```bash
 python bernoulli.py help
 ```
@@ -26,9 +31,9 @@ Here are some quick examples to show you the power of the Bernoulli package:
 ### Calculating the nth Bernoulli Number
 This command prints the 5th Bernoulli number.
 ```bash
-python bernoulli.py nth 5
+python bernoulli.py nth 6
 ```
-**Or**, in interactive mode type `nth(5)`.
+**Or**, in interactive mode type `nth(6)`.
 
 ### Printing Bernoulli Numbers up to `k`
 Lists the first 11 Bernoulli numbers (0 to 10).
@@ -42,8 +47,11 @@ python bernoulli.py up_to 10
 ```bash
 python bernoulli.py psum 1509096632309561804061385286158050392946131124427766465467743034  1873
 ```  
-* **Or**, in interactive mode type `psum(1509096632309561804061385286158050392946131124427766465467743034, 1873)`.  
-* I have choosen a "small" `n` for the purpose of readability. You can try increasing the first argument quite freely. Whereas increasing the `k` will have a noticable computional cost.
+* **Or**, in interactive mode type
+```python
+psum(1509096632309561804061385286158050392946131124427766465467743034, 1873)
+```.  
+* I have choosen a **"small"** `n` for the purpose of readability. You can try increasing the first argument quite freely. Whereas increasing the `k` will have a noticable computional cost.
 
 ### Complex equations using Python3's `math` functions and builtins
 #### Interactive mode only.
