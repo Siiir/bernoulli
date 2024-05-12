@@ -83,7 +83,7 @@ help(nth)
   3. `k` > 3000 will trigger only in-RAM caching enhancing computations during one interactive session..
 
 ## Contributing
-Interested in contributing? We're always looking for help to improve documentation, fix issues, or make optimizations. Please read `CONTRIBUTING.md` for more information on how you can contribute to the Bernoulli project.
+Interested in contributing? We're always looking for help to improve documentation, fix issues, or make optimizations.
 
 ## License
 Distributed under the Apache License. See `LICENSE` for more information.
